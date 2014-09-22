@@ -10,6 +10,7 @@ public class pathFollowScript : MonoBehaviour {
 	Transform BR;
 
 	int pos;
+	float speed = 10f;
 
 	// Use this for initialization
 	void Start () {
@@ -39,6 +40,30 @@ public class pathFollowScript : MonoBehaviour {
 			pos = 3;
 		}
 
+		moveTo(pos);
+
+	}
+	void moveTo (int pos)
+	{
+		switch(pos)
+		{
+			case 0:
+				transform.position = Vector3.MoveTowards(transform.position, TL.position, speed*Time.deltaTime);
+			transform.rotation = Quaternion.LookRotation(Vector3.up);
+				break;
+			case 1:
+				transform.position = Vector3.MoveTowards(transform.position, TR.position, speed*Time.deltaTime);
+				transform.LookAt(TR.position);
+				break;
+			case 2:
+				transform.position = Vector3.MoveTowards(transform.position, BR.position, speed*Time.deltaTime);
+				transform.LookAt(BR.position);
+				break;
+			case 3:
+				transform.position = Vector3.MoveTowards(transform.position, BL.position, speed*Time.deltaTime);
+				transform.LookAt(BL.position); 
+				break;
+		}
 
 	}
 }
