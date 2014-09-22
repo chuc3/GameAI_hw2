@@ -3,6 +3,9 @@
 --- !u!78 &1
 TagManager:
   tags:
+  - Player_Circle
+  - Player_Circle_Sprite
+  - Player_FOV
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
