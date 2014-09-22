@@ -6,6 +6,7 @@ TagManager:
   - Player_Circle
   - Player_Circle_Sprite
   - Player_FOV
+  - Wander_point
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

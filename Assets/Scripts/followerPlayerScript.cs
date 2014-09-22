@@ -15,16 +15,16 @@ public class followerPlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float speed = .025f;
+		float speed = 5f;
 		if (player_circle.collider2D.OverlapPoint (transform.position))
 		{
 			vis.renderer.enabled = true;
-			speed = .005f;
+			speed = 2.5f;
 		}
 		else{
 			vis.renderer.enabled = false;
 		}
-		transform.position = Vector3.MoveTowards(transform.position, player.position, speed);
+		transform.position = Vector3.MoveTowards(transform.position, player.position, speed*Time.deltaTime);
 		transform.LookAt (player);
 		
 	}

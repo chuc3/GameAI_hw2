@@ -6,6 +6,8 @@ public class EvadePlayerScript : MonoBehaviour {
 	Transform player;
 	GameObject thePlayer;
 	GameObject playerFov;
+	GameObject wanderPoint;
+
 	// Use this for initialization
 	Vector3 wanderPos;
 	bool wasEvading;
@@ -13,6 +15,8 @@ public class EvadePlayerScript : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
 		playerFov = GameObject.FindGameObjectWithTag ("Player_FOV");
 		thePlayer = GameObject.FindGameObjectWithTag ("Player");
+		wanderPoint = GameObject.FindGameObjectWithTag ("Wander_point");
+
 		wanderPos = new Vector3 (0f, 0f, 0f);
 		wasEvading = false;
 	}
@@ -46,7 +50,10 @@ public class EvadePlayerScript : MonoBehaviour {
 		}
 		else
 		{
+			GameObject[] temp = GameObject.FindGameObjectsWithTag("Wander_point");
+			for (int i = 1; i<temp.Length;i++)Destroy (temp[i]);
 			wanderPos = new Vector3(Random.Range(-50f,50f),Random.Range(-25f,25f),0f);
+			Instantiate(wanderPoint,wanderPos,Quaternion.identity);
 		}
 		transform.LookAt (wanderPos);
 		 
