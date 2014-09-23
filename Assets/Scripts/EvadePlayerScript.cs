@@ -54,6 +54,8 @@ public class EvadePlayerScript : MonoBehaviour {
 		Vector2 frce = new Vector2(transform.position.x - thePlayer.transform.position.x, transform.position.y - thePlayer.transform.position.y);
 		rigidbody2D.AddForce (frce);
 
+		Quaternion rot = thePlayer.transform.rotation;
+		transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * 2);
 	}
 	void wander()
 	{
@@ -80,14 +82,23 @@ public class EvadePlayerScript : MonoBehaviour {
 		{
 			GameObject[] temp = GameObject.FindGameObjectsWithTag("Wander_point");
 			for (int i = 1; i<temp.Length;i++)Destroy (temp[i]);
-			wanderPos = new Vector3(Random.Range(-50f,50f),Random.Range(-25f,25f),0f);
+			wanderPos = new Vector3(Random.Range(-50f,50f),Random.Range(-25f,25f),-1f);
 			Instantiate(wanderPoint,wanderPos,Quaternion.identity);
 		}
 		// change this
 		//transform.LookAt (wanderPos);
 		print (wanderPos);
+		/*
 		Quaternion rot = Quaternion.LookRotation (wanderPos);
 		transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * 2);
-		 
+		*/
+		Vector3 moveDirection = wanderPos - gameObject.transform.position;
+		if (moveDirection != Vector3.zero)
+		{
+			float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+			Quaternion rot = Quaternion.AngleAxis(angle, Vector3.forward);
+			transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * 2);
+		}
+
 	}
 }
