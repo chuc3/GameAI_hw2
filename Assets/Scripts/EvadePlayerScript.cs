@@ -87,7 +87,6 @@ public class EvadePlayerScript : MonoBehaviour {
 		}
 		// change this
 		//transform.LookAt (wanderPos);
-		print (wanderPos);
 		/*
 		Quaternion rot = Quaternion.LookRotation (wanderPos);
 		transform.rotation = Quaternion.Slerp(transform.rotation, rot, Time.deltaTime * 2);
